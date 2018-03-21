@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public Text countText;
     public Text winText;
+    public AudioSource ring;
 
     private int count;
     public Rigidbody rb;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour {
         count = 0;
         SetCountText();
         winText.text = "";
+        ring = GetComponent<AudioSource>();
     }
     void FixedUpdate()
     {
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour {
         if(other.gameObject.CompareTag("Pick Up"))
         {
             other.gameObject.SetActive(false);
+            ring.Play();
             count += 1;
             SetCountText();
         }
